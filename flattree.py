@@ -3,7 +3,7 @@ import sys
 from pathlib import Path
 from typing import List, Optional
 
-DEFAULT_SEPARATOR = "?-file-separator-?"
+DEFAULT_SEPARATOR = "*----flattree-file-separator----*"
 
 def list_files(startpath: Path, output_file: Path, extensions: Optional[List[str]], max_lines: Optional[int], strict_extensions: Optional[List[str]]) -> None:
     allowed_extensions = set(ext.lower() for ext in extensions) if extensions else set()
