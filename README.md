@@ -70,7 +70,7 @@ Analyze the directory `/path/to/project` and save the output to
   reading a file.
 
 - The default separator between entries in the output file is 
-  `"?-file-separator-?"`.
+  `"*----flattree-file-separator----*"`.
 
 - While this project already works, it is still in development.
 
