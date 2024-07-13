@@ -6,7 +6,7 @@ Mainly designed to simplify input management for LLM code analysis and generatio
 
 ## SYNOPSIS
 
-`python flattree.py -o OUTPUT_FILE -d DIRECTORY --extensions=EXT1,EXT2 --strict-extensions=EXT1,EXT2 -n MAX_LINES`
+`python flattree.py [-o OUTPUT_FILE] [-d DIRECTORY] [--extensions=EXT1,EXT2] [--strict-extensions=EXT1,EXT2] [-n MAX_LINES] [--ignore=IGNORE1,IGNORE2]`
 
 ## DESCRIPTION
 `flattree.py` traverses a specified directory and its subdirectories, creating
@@ -16,10 +16,12 @@ separator.
 
 ## OPTIONS
 - `-o OUTPUT_FILE`, `--output OUTPUT_FILE`
-  - Specify the name of the output file. This option is required.
+  - Optional. Specify the name of the output file. If not specified, the output 
+    will be printed to the standard output.
 
 - `-d DIRECTORY`, `--directory DIRECTORY`
-  - Specify the directory to analyze. This option is required.
+  - Optional. Specify the directory to analyze. If not specified, the current 
+    working directory will be used.
 
 - `--extensions=EXT1,EXT2,...`
   - Optional. Provide a comma-separated list of file extensions. Only 
@@ -38,7 +40,18 @@ separator.
     their content in the output. Files with more lines than this number 
     will only be listed by name.
 
+- `--ignore=IGNORE1,IGNORE2,...`
+  - Optional. Provide a comma-separated list of files or directories to ignore. 
+    These files or directories will not be included in the output. The script 
+    will also automatically ignore files and directories listed in a 
+    `.flattreeignore` file if it exists in the specified directory.
+
 ## EXAMPLES
+
+`python flattree.py`
+
+Analyze the current working directory and print the output to the standard output.
+All files will be listed, but only their names will be included.
 
 `python flattree.py -o tree_output.txt -d /path/to/project`
 
@@ -64,6 +77,12 @@ Analyze the directory `/path/to/project` and save the output to
 `code_output.txt`. All files will be listed, but only files with fewer than 
 100 lines will have their content included in the output.
 
+`python flattree.py -o code_output.txt -d /path/to/project --ignore=file1.txt,subdir3`
+
+Analyze the directory `/path/to/project` and save the output to 
+`code_output.txt`. All files will be listed, but the file `file1.txt` and the 
+directory `subdir3` will be ignored.
+
 ## NOTES
 - The script uses UTF-8 encoding for reading files and writing output. It 
   will skip files that cannot be decoded and exit if there's an error 
@@ -71,6 +90,8 @@ Analyze the directory `/path/to/project` and save the output to
 
 - The default separator between entries in the output file is 
   `"*----flattree-file-separator----*"`.
+
+- The script automatically ignores the `.flattreeignore` file if it exists in the specified directory.
 
 - While this project already works, it is still in development.
 
