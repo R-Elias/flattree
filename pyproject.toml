@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "flattree"
+version = "0.1.0"
+description = "Flatten or rebuild a directory tree"
+readme = "README.md"
+requires-python = ">=3.8"
+authors = [{ name = "Elias Aliche" }]
+license = { text = "MIT" }
+
+[project.scripts]
+flattree = "src.cli:main"
+
+[tool.setuptools]
+packages = ["src"]
